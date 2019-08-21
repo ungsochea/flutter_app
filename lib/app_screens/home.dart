@@ -112,6 +112,6 @@ void bookFlight(BuildContext context){
   );
   showDialog(
     context: context,
-    builder: (BuildContext context) => alertDialog;
+    builder: (BuildContext context) => alertDialog
   );
 }
