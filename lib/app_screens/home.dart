@@ -26,7 +26,7 @@ class Home extends StatelessWidget {
                 child:  Text("From Mumbai to Bangalore vie New Delhi",
                   textDirection: TextDirection.ltr,
                   style: TextStyle(
-                    fontSize: 35.0,
+                    fontSize: 20.0,
                     fontFamily: 'Raleway',
                     fontWeight: FontWeight.w700,
                     color: Colors.white,
@@ -52,7 +52,7 @@ class Home extends StatelessWidget {
                 child:  Text("From Mumbai to Bangalore vie New Delhi",
                   textDirection: TextDirection.ltr,
                   style: TextStyle(
-                    fontSize: 35.0,
+                    fontSize: 20.0,
                     fontFamily: 'Raleway',
                     fontWeight: FontWeight.w700,
                     color: Colors.white,
@@ -62,10 +62,20 @@ class Home extends StatelessWidget {
               )
             ],
           ),
+          FlightImageAsset()
           ],
         )
         
       ),
       );
+  }
+}
+
+class FlightImageAsset extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    AssetImage assetImage = AssetImage('images/flight.png');
+    Image image = Image(image: assetImage,width: 250.0,height: 250.0,);
+    return Container(child: image);
   }
 }
