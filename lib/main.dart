@@ -8,8 +8,28 @@ void main(){
     home: Scaffold(
       appBar: AppBar(title: Text("Basic List View"),),
       body: getListView(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          debugPrint("FAB click");
+        },
+        child: Icon(Icons.add),
+        tooltip: 'Add One More Item',
+      ),
     ),
   ));
+}
+
+void showSnackBar(BuildContext context,String item){
+  var snackBar = SnackBar(
+    content: Text("You jst tapped $item"),
+    action: SnackBarAction(
+      label: "UNDO",
+      onPressed: (){
+        debugPrint("Performing dummy UNDO operation");
+      },
+    ),
+  );
+  Scaffold.of(context).showSnackBar(snackBar);
 }
 
 List<String> getListElements(){
@@ -27,8 +47,8 @@ Widget getListView(){
         leading: Icon(Icons.arrow_right),
         title: Text(listItems[index]),
         onTap: (){
-          debugPrint('${listItems[index]} was tapped');
-        },
+          showSnackBar(context,(listItems[index]));
+        }
       );
     }
   );
