@@ -1,57 +1,51 @@
 import 'package:flutter/material.dart';
-import './app_screens/home.dart';
 
 void main(){
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    title: "Exploring UI widgets",
-    home: Scaffold(
-      appBar: AppBar(title: Text("Basic List View"),),
-      body: getListView(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          debugPrint("FAB click");
-        },
-        child: Icon(Icons.add),
-        tooltip: 'Add One More Item',
+
+  runApp(
+    MaterialApp(
+      title: "Sateful App Example",
+      home:FavoriteCity()
+    )
+  );
+}
+
+class FavoriteCity extends StatefulWidget {
+  @override
+  _FavoriteCityState createState() => _FavoriteCityState();
+}
+
+class _FavoriteCityState extends State<FavoriteCity> {
+
+  String nameCity = "";
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar:AppBar(
+        title:  Text("Stateful App Example"),
       ),
-    ),
-  ));
-}
-
-void showSnackBar(BuildContext context,String item){
-  var snackBar = SnackBar(
-    content: Text("You jst tapped $item"),
-    action: SnackBarAction(
-      label: "UNDO",
-      onPressed: (){
-        debugPrint("Performing dummy UNDO operation");
-      },
-    ),
-  );
-  Scaffold.of(context).showSnackBar(snackBar);
-}
-
-List<String> getListElements(){
-  var items = List<String>.generate(1000, (counter)=>"Item $counter");
-  return items;
-}
-
-Widget getListView(){
-  
-  var listItems = getListElements();
-
-  var listView = ListView.builder(
-    itemBuilder: (context,index){
-      return ListTile(
-        leading: Icon(Icons.arrow_right),
-        title: Text(listItems[index]),
-        onTap: (){
-          showSnackBar(context,(listItems[index]));
-        }
-      );
-    }
-  );
-
-  return listView;
+      body: Container(
+        margin: EdgeInsets.all(20.0),
+        child: Column(
+          children: <Widget>[
+            TextField(
+              onChanged: (String userInput){
+                setState(() {
+                  nameCity = userInput;
+                });
+              },
+            ),
+            Padding(
+              padding: EdgeInsets.all(30.0),
+              child: Text(
+                  "Your bext city is $nameCity",
+                  style: TextStyle(fontSize: 20.0),
+                ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
 }
